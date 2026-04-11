@@ -1,0 +1,298 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+h1{
+    text-align: center;
+    flex-direction: row;
+    padding: 20px;
+}
+
+#root {
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Main Container */
+body > div,
+#root > div:first-child {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  animation: slideIn 0.3s ease-out;
+  width: 100%;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input and Label Styling */
+label {
+  display: block;
+  margin-bottom: 15px;
+  flex: 1;
+  min-width: 200px;
+}
+
+input[type="text"],
+input[placeholder] {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  margin-bottom: 0;
+}
+
+input[type="text"]:focus,
+input[placeholder]:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+/* Add Task Section - Flex Layout for Input + Button */
+label + button,
+input + button {
+  padding: 12px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  margin-left: 10px;
+  margin-top: 0;
+}
+
+label + button:hover,
+input + button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+label + button:active,
+input + button:active {
+  transform: translateY(0);
+}
+
+/* Wrapper for label and button */
+ label,
+ input[type="text"] {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Todo List */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-left: 4px solid #667eea;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-out;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+li:hover {
+  background: #f0f1ff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+/* Task Text Display */
+li:not(:has(input)) {
+  justify-content: space-between;
+}
+
+/* Input in Edit Mode */
+li input[type="text"] {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  font-size: 1em;
+  margin: 0;
+  min-width: 150px;
+}
+
+li input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Button Styling */
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+/* Delete Button - 2nd button in list */
+li button:nth-of-type(1) {
+  background: #ff6b6b;
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+li button:nth-of-type(1):hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+li button:nth-of-type(1):active {
+  transform: translateY(0);
+}
+
+/* Edit/Update Button - 2nd button in list */
+li button:nth-of-type(2) {
+  background: #4ecdc4;
+  color: white;
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+}
+
+li button:nth-of-type(2):hover {
+  background: #45b5ad;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+}
+
+li button:nth-of-type(2):active {
+  transform: translateY(0);
+}
+
+/* Update Button (in edit mode) - when there's an input, this becomes update */
+li:has(input) button:nth-of-type(1) {
+  background: #51cf66;
+  color: white;
+  box-shadow: 0 2px 8px rgba(81, 207, 102, 0.3);
+}
+
+li:has(input) button:nth-of-type(1):hover {
+  background: #40c057;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(81, 207, 102, 0.4);
+}
+
+li:has(input) button:nth-of-type(1):active {
+  transform: translateY(0);
+}
+
+/* Change 2nd button color in edit mode (cancel button) */
+li:has(input) button:nth-of-type(2) {
+  background: #868e96;
+  color: white;
+  box-shadow: 0 2px 8px rgba(134, 142, 150, 0.3);
+}
+
+li:has(input) button:nth-of-type(2):hover {
+  background: #748596;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(134, 142, 150, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  body > div,
+  #root > div:first-child {
+    padding: 25px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  li input[type="text"] {
+    width: 100%;
+  }
+
+  button {
+    flex: 1;
+    padding: 10px 12px;
+  }
+
+  label + button,
+  input + button {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #667eea;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #764ba2;
+}
